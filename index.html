@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,6 +13,10 @@
   <title>BOLAUTAMA | PREDIKSI BOLA TERBAIK </title>
 
 
+<script>
+/* Terapkan tema tersimpan sebelum halaman tampil (mencegah kedipan) */
+(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -56,6 +59,11 @@
     <a href="#jadwal">Jadwal</a>
     <a href="#provider">Provider</a>
   </nav>
+
+  <!-- TOMBOL MODE TERANG / GELAP -->
+  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode terang/gelap" title="Ganti mode terang/gelap">
+    <span class="theme-icon" aria-hidden="true">🌙</span>
+  </button>
 
   <!-- TANGGAL OTOMATIS -->
   <span class="navmeta" id="dateLabel"></span>
