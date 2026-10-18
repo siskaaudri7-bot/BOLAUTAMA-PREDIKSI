@@ -458,7 +458,7 @@ function renderHero() {
   });
 }
 
-const SLIDER_INTERVAL = 5000;
+const SLIDER_INTERVAL = 2000;
 let sliderTimer = null;
 let sliding = false;
 let paused = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -958,3 +958,25 @@ document.getElementById("openChat").onclick = function () {
   script.onerror = () => { button.disabled = false; button.title = "Chat belum tersedia. Coba lagi."; };
   document.body.appendChild(script);
 };
+
+/* ===== MODE TERANG / GELAP (tambahan, tidak mengubah fungsi lain) ===== */
+(() => {
+  const root = document.documentElement;
+  const btn = document.getElementById("themeToggle");
+  const meta = document.querySelector('meta[name="theme-color"]');
+  const apply = (t) => {
+    root.setAttribute("data-theme", t);
+    if (btn) {
+      btn.querySelector(".theme-icon").textContent = t === "dark" ? "☀️" : "🌙";
+      btn.setAttribute("aria-pressed", String(t === "dark"));
+      btn.title = t === "dark" ? "Ganti ke mode terang" : "Ganti ke mode gelap";
+    }
+    if (meta) meta.setAttribute("content", t === "dark" ? "#1b1a2e" : "#30285d");
+  };
+  apply(root.getAttribute("data-theme") || "light");
+  btn?.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    apply(next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
