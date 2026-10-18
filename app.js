@@ -312,6 +312,7 @@ function stableTeamValue(name) {
    BOLAUTAMA — PREDIKSI SKOR & ODDS MODERN
 ========================================== */
 
+
 function getPrediction(match) {
   if (match.state !== "MENDATANG") {
     return null;
@@ -320,26 +321,43 @@ function getPrediction(match) {
   const homeValue = stableTeamValue(match.home.name);
   const awayValue = stableTeamValue(match.away.name);
 
+  // Perkiraan gol dengan variasi yang lebih luas.
   const homeExpected = Math.max(
-    0.35,
-    Math.min(2.8, 1.15 + (homeValue - 0.5) * 1.1 + 0.18)
+    0.25,
+    Math.min(3.5, 1.35 + (homeValue - 0.5) * 2.0 + 0.20)
   );
 
   const awayExpected = Math.max(
-    0.25,
-    Math.min(2.5, 1.05 + (awayValue - 0.5) * 1.0)
+    0.20,
+    Math.min(3.2, 1.15 + (awayValue - 0.5) * 1.9)
   );
+
+  // Variasi deterministik berdasarkan kedua nama tim.
+  // Skor pertandingan yang sama tidak berubah setiap refresh.
+  const variation = stableTeamValue(
+    match.home.name + "|" + match.away.name
+  );
+
+  const homeAdjustment = (variation - 0.5) * 0.9;
+  const awayAdjustment = (0.5 - variation) * 0.7;
 
   const homeGoals = Math.max(
     0,
-    Math.min(4, Math.round(homeExpected))
+    Math.min(
+      5,
+      Math.floor(homeExpected + homeAdjustment + 0.5)
+    )
   );
 
   const awayGoals = Math.max(
     0,
-    Math.min(4, Math.round(awayExpected))
+    Math.min(
+      5,
+      Math.floor(awayExpected + awayAdjustment + 0.5)
+    )
   );
 
+  // Estimasi peluang hasil pertandingan.
   const diff = homeExpected - awayExpected;
 
   let homeProb = Math.max(0.12, 0.38 + diff * 0.16);
