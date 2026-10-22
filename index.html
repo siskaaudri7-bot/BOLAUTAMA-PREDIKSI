@@ -55,6 +55,37 @@ html[data-theme="dark"] .arrow{color:var(--foreground)}
 .live-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:4px 0}.live-row .live-team{display:flex;justify-content:flex-start;text-align:left;align-items:center;gap:8px;min-width:0}.live-row .live-team img{width:24px;height:24px;object-fit:contain;flex:none}.live-row .live-team>*:first-child{width:24px;height:24px;flex:none;font-size:20px;line-height:24px}.live-row .live-team *{margin:0}.live-row b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .live-score{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
 
+
+.ls-layout{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
+.ls-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.ls-tabs{display:flex;gap:6px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
+.ls-tab{display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;color:var(--muted);padding:6px 16px;border-radius:999px;font-weight:700;font-size:12px}
+.ls-tab.active{background:var(--primary);color:var(--on-primary)}
+.ls-cta{padding:7px 14px;border-radius:8px;background:var(--primary);color:var(--on-primary);font-weight:700;font-size:12px}
+.ls-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.ls-card{border-radius:12px;overflow:hidden;background:linear-gradient(110deg,oklch(.33 .12 15),var(--banner) 70%);color:var(--on-primary);box-shadow:var(--shadow)}
+.ls-main{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 14px}
+.ls-league{grid-column:1/-1;font-size:11px;color:var(--banner-muted);display:flex;justify-content:space-between}
+.ls-team{display:flex;align-items:center;gap:8px;font-weight:700;margin:3px 0}.ls-team img,.ls-team>*:first-child{width:24px;height:24px;object-fit:contain;flex:none;margin:0}
+.ls-team em{margin-left:auto;font-style:normal;font-size:18px;font-variant-numeric:tabular-nums}
+.ls-live{border:1px solid oklch(.65 .2 25);color:oklch(.8 .15 25);background:oklch(.2 .05 15 / .6);border-radius:999px;padding:6px 12px;font-weight:800;font-size:12px}
+.ls-live.soon{border-color:var(--banner-line);color:var(--banner-muted)}
+.ls-actions{display:flex;gap:6px;padding:8px 10px;background:oklch(.15 .04 276 / .55)}
+.ls-actions button,.ls-actions a{border:0;background:oklch(1 0 0 / .08);color:var(--on-primary);font-size:11px;padding:5px 10px;border-radius:6px}
+.ls-actions .fav.on{color:oklch(.85 .16 85)}
+.ls-side{background:var(--banner);color:var(--on-primary);border-radius:12px;padding:12px}
+.ls-side h3{margin:2px 4px 10px;font-size:14px}
+.ft{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;padding:8px;border-radius:10px;background:oklch(1 0 0 / .05);margin-bottom:8px}
+.ft-img{height:64px;border-radius:8px;background:linear-gradient(135deg,var(--primary),oklch(.35 .12 15));display:flex;align-items:center;justify-content:center;gap:6px}.ft-img img,.ft-img>*{width:28px;height:28px;object-fit:contain}
+.ft b{font-size:13px}.ft small{display:inline-block;margin-top:6px;padding:2px 6px;border-radius:4px;background:oklch(1 0 0 / .1);font-size:11px;color:var(--banner-muted)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.news{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.news img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--primary-soft)}
+.news div{padding:12px 14px}.news small{color:var(--primary);font-weight:700;font-size:11px}.news h4{margin:4px 0 6px;font-size:15px;line-height:1.35}.news p{margin:0;color:var(--muted);font-size:13px}
+.ls-dialog{border:0;border-radius:14px;padding:0;width:min(520px,92vw);background:var(--banner);color:var(--on-primary)}.ls-dialog::backdrop{background:var(--overlay)}
+.ls-dialog .ls-score{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;text-align:center;padding:34px 20px 16px}.ls-score img{width:56px;height:56px;object-fit:contain}.ls-score strong{font-size:36px}
+.ls-dialog p{text-align:center;color:var(--banner-muted);margin:0 20px 16px}.ls-dialog .ls-go{display:block;margin:0 20px 20px;text-align:center;padding:12px;border-radius:10px;background:var(--primary);font-weight:800}
+@media(max-width:900px){.ls-layout{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -103,6 +134,7 @@ html[data-theme="dark"] .arrow{color:var(--foreground)}
     <a href="https://bolautamanih.com/">JP BOLAUTAMA</a>
     <a href="#live" class="live-nav"><span class="live-dot"></span>Live <span class="live-count" id="liveCount">0</span></a>
     <a href="#prediksi">Prediksi</a>
+    <a href="#berita">Berita</a>
     <a href="#jadwal">Jadwal</a>
     <a href="#provider">Provider</a>
   </nav>
@@ -150,14 +182,24 @@ html[data-theme="dark"] .arrow{color:var(--foreground)}
 </div>
 </section>
 <section class="section" id="live">
-<div class="section-head">
+<div class="section-head"><div><h2><span class="live-nav"><span class="live-dot"></span>Live Stream</span></h2><p>Pertandingan berlangsung & laga unggulan · skor diperbarui otomatis.</p></div></div>
+<div class="ls-layout">
 <div>
-<h2><span class="live-nav"><span class="live-dot"></span>Sedang live</span></h2>
-<p>Pertandingan yang sedang berlangsung · diperbarui otomatis setiap 60 detik.</p>
+<div class="ls-bar"><div class="ls-tabs" role="tablist">
+<button type="button" class="ls-tab" data-ls="all">SEMUA</button>
+<button type="button" class="ls-tab active" data-ls="live"><span class="live-dot"></span>Live</button>
+<button type="button" class="ls-tab" data-ls="fav">★ Favorit</button></div>
+<a class="ls-cta" href="#jadwal">▤ Jadwal</a></div>
+<div class="ls-grid" id="liveGrid"><div class="empty-state">Memuat pertandingan live…</div></div>
 </div>
+<aside class="ls-side"><h3>Laga unggulan</h3><div id="featuredList"><div class="empty-state">Memuat…</div></div></aside>
 </div>
-<div class="live-grid" id="liveGrid"><div class="empty-state">Memuat pertandingan live…</div></div>
 </section>
+<section class="section" id="berita">
+<div class="section-head"><div><h2>Berita bola</h2><p>Kabar terbaru dari liga top Eropa.</p></div></div>
+<div class="news-grid" id="newsGrid"><div class="empty-state">Memuat berita…</div></div>
+</section>
+<dialog class="ls-dialog" id="lsDialog"><button type="button" class="promo-close" id="lsClose" aria-label="Tutup">×</button><div id="lsBody"></div></dialog>
 <section class="section" id="prediksi">
 <div class="section-head">
 <div>
@@ -1015,23 +1057,63 @@ function renderFixtures() {
 }
 
 
+let lsFilter = "live";
+const favKey = "bolautama_fav";
+function getFavs(){ try { return JSON.parse(localStorage.getItem(favKey)) || []; } catch { return []; } }
+function sc(t){ return t.score == null ? "-" : esc(t.score); }
 function liveCard(match) {
-  return `<div class="live-card" data-event-id="${esc(match.id)}">
-    <div class="live-top"><span>${esc(match.league)}</span><span class="live-badge"><span class="live-dot"></span>LIVE${match.status ? " · " + esc(match.status) : ""}</span></div>
-    <div class="live-row"><span class="live-team">${teamLogo(match.home)}<b>${esc(match.home.name)}</b></span><span class="live-score">${esc(match.home.score ?? 0)}</span></div>
-    <div class="live-row"><span class="live-team">${teamLogo(match.away)}<b>${esc(match.away.name)}</b></span><span class="live-score">${esc(match.away.score ?? 0)}</span></div>
-  </div>`;
+  const live = match.state === "LIVE", fav = getFavs().includes(match.id);
+  return `<div class="ls-card"><div class="ls-main">
+    <div class="ls-league"><span>${esc(match.league)}</span><span>${live ? esc(match.status || "") : formatTime(match.date) + " WIB"}</span></div>
+    <div><div class="ls-team">${teamLogo(match.home)}<span>${esc(match.home.name)}</span>${match.state !== "MENDATANG" ? `<em>${sc(match.home)}</em>` : ""}</div>
+    <div class="ls-team">${teamLogo(match.away)}<span>${esc(match.away.name)}</span>${match.state !== "MENDATANG" ? `<em>${sc(match.away)}</em>` : ""}</div></div>
+    <button type="button" class="ls-live ${live ? "" : "soon"}" data-watch="${esc(match.id)}">▷ ${live ? "LIVE" : match.state === "SELESAI" ? "FT" : "SOON"}</button></div>
+    <div class="ls-actions"><button type="button" data-watch="${esc(match.id)}">▶ LiveStream</button><a href="#prediksi">📊 Analisis</a><button type="button" class="fav ${fav ? "on" : ""}" data-fav="${esc(match.id)}">★ ${fav ? "Favorit" : "Simpan"}</button></div></div>`;
 }
 function renderLive() {
   const live = games.filter(m => m.state === "LIVE");
   if ($("liveCount")) $("liveCount").textContent = live.length;
-  $("liveGrid").innerHTML = live.length
-    ? live.map(liveCard).join("")
-    : `<div class="empty-state">Belum ada pertandingan yang sedang live. Cek jadwal di bawah.</div>`;
+  const favs = getFavs();
+  const list = lsFilter === "live" ? live : lsFilter === "fav" ? games.filter(m => favs.includes(m.id)) : games;
+  const empty = { live: "Belum ada pertandingan yang sedang live. Lihat tab SEMUA.", fav: "Belum ada favorit. Tekan ★ Simpan pada pertandingan.", all: "Tidak ada pertandingan." }[lsFilter];
+  $("liveGrid").innerHTML = list.length ? list.map(liveCard).join("") : `<div class="empty-state">${empty}</div>`;
+  const feat = games.filter(m => m.state === "MENDATANG").slice(0, 6);
+  $("featuredList").innerHTML = feat.length ? feat.map(m => `<div class="ft"><div class="ft-img">${teamLogo(m.home)}${teamLogo(m.away)}</div><div><b>${esc(m.home.name)} <span style="opacity:.6">VS</span> ${esc(m.away.name)}</b><br><small>Kick-off ${formatTime(m.date)} ${formatDate(m.date)}</small></div></div>`).join("") : `<div class="empty-state">Tidak ada laga mendatang.</div>`;
 }
+document.querySelectorAll("[data-ls]").forEach(b => b.addEventListener("click", () => {
+  lsFilter = b.dataset.ls;
+  document.querySelectorAll("[data-ls]").forEach(x => x.classList.toggle("active", x === b));
+  renderLive();
+}));
+$("liveGrid").addEventListener("click", ev => {
+  const f = ev.target.closest("[data-fav]");
+  if (f) { let v = getFavs(); const id = f.dataset.fav; v = v.includes(id) ? v.filter(x => x !== id) : [...v, id]; localStorage.setItem(favKey, JSON.stringify(v)); renderLive(); return; }
+  const w = ev.target.closest("[data-watch]");
+  if (!w) return;
+  const m = games.find(x => x.id === w.dataset.watch); if (!m) return;
+  $("lsBody").innerHTML = `<div class="ls-score"><div>${teamLogo(m.home)}<br><b>${esc(m.home.name)}</b></div><strong>${m.state === "MENDATANG" ? "VS" : sc(m.home) + " - " + sc(m.away)}</strong><div>${teamLogo(m.away)}<br><b>${esc(m.away.name)}</b></div></div>
+    <p>${esc(m.league)} · ${statusLabel(m)}</p><a class="ls-go" href="https://bolautamanih.com/" target="_blank" rel="noopener">▶ TONTON LIVE STREAMING DI BOLAUTAMA</a>`;
+  $("lsDialog").showModal();
+});
+$("lsClose").onclick = () => $("lsDialog").close();
+$("lsDialog").addEventListener("click", e => { if (e.target === $("lsDialog")) $("lsDialog").close(); });
 setInterval(() => {
   if (!document.hidden && games.some(m => m.state === "LIVE")) loadMatches();
 }, 60 * 1000);
+
+const NEWS_LEAGUES = [["eng.1","Premier League"],["esp.1","La Liga"],["ita.1","Serie A"],["uefa.champions","Champions League"]];
+async function loadNews() {
+  try {
+    const all = (await Promise.all(NEWS_LEAGUES.map(async ([id, name]) => {
+      const r = await fetch(`${ESPN_API}/${id}/news?limit=6`); if (!r.ok) return [];
+      const d = await r.json(); return (d.articles || []).map(a => ({ ...a, lg: name }));
+    }))).flat().filter(a => a.headline);
+    const seen = new Set();
+    const list = all.filter(a => !seen.has(a.headline) && seen.add(a.headline)).sort((a, b) => new Date(b.published) - new Date(a.published)).slice(0, 12);
+    $("newsGrid").innerHTML = list.length ? list.map(a => `<a class="news" href="${esc(a.links?.web?.href || "#")}" target="_blank" rel="noopener">${a.images?.[0]?.url ? `<img src="${esc(a.images[0].url)}" alt="" loading="lazy">` : ""}<div><small>${esc(a.lg)} · ${formatDate(new Date(a.published))}</small><h4>${esc(a.headline)}</h4><p>${esc(a.description || "")}</p></div></a>`).join("") : `<div class="empty-state">Belum ada berita.</div>`;
+  } catch (e) { $("newsGrid").innerHTML = `<div class="empty-state">Gagal memuat berita.</div>`; }
+}
+loadNews();
 
 /* ==========================================
    LOAD / UPDATE PERTANDINGAN
